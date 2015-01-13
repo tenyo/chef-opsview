@@ -1,0 +1,7 @@
+{
+  "id": "opsview-server",
+  "run_list": ["role[opsview_host]"],
+  "automatic": {
+    "ipaddress": "192.168.88.88"
+  }
+}

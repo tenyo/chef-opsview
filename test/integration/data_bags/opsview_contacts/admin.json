@@ -1,0 +1,8 @@
+{
+  "id": "admin",
+  "name": "admin",
+  "password": "initial",
+  "encrypted_password": "$apr1$H91IGY8f$.wLw45u8.UcNYhHNnqZac.",
+  "fullname": "Admin",
+  "role": "Administrator"
+}
