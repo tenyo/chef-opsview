@@ -74,8 +74,8 @@ Stores contact information to add to Opsview. Note that this data bag and a data
   "fullname": "John Doe",
   "encrypted_password": "",
   "role": "Administrator",
-  "keywords": [  "keyword1" ]
-  "email": "john@email.com"
+  "keywords": [  "keyword1" ],
+  "email": "john@email.com",
   "sharednotificationprofiles": [ "shared_profile1" ],
   "variables": [
     {
