@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe "apt::default"
+
 apt_repository "opsview" do
   uri "http://downloads.opsview.com/opsview-core/latest/apt"
   distribution node['lsb']['codename']

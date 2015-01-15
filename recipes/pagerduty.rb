@@ -49,6 +49,7 @@ admin_password = node['opsview']['admin_password']
   
   execute "put pagerduty-#{object_type}" do
     command "#{node['opsview']['opsview_rest_path']}  --username=admin --password=#{admin_password} --content-file=#{node['opsview']['json_config_dir']}/pagerduty-#{object_type}.json --data-format=json --pretty PUT config/#{object_type}"
+    sensitive true
     action :nothing
   end
 end
@@ -56,5 +57,6 @@ end
 # Reload the Opsview config
 execute "reload opsview config" do
   command "#{node['opsview']['opsview_rest_path']}  --username=admin --password=#{admin_password} POST reload"
+  sensitive true
   action :nothing
 end

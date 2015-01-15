@@ -31,13 +31,13 @@ Installs and configures Opsview Core on a system. The recipe does the following:
 3. Installs the opsview package from Opsview's apt repository
 4. Sets up Apache, optionally with SSL
 5. Updates the password for the admin account
-6. Searches for nodes in the Chef environments specified (and optionally adds )
+6. Searches for nodes in the Chef environments specified (and optionally adds clients from data bags that are not in Chef)
 7. Pulls configuration from data bags
 8. For each object type (host, service check, etc), does the following:
     1. Checks for objects that no longer exist in Chef and deletes them from Opsview
-    2. Creates a JSON file that includes all of the objects and their configuration
-    3. Pushes the JSON to Opsview using the REST API if the configuration has changed
-9. Reloads the Opsview running configuration if changes have been made
+    2. Creates JSON config that includes all of the objects and their configuration
+    3. Pushes the config to Opsview using the REST API if the configuration has changed
+9. Reloads the Opsview running configuration if any changes have been made
 
 #### opsview::ldap
 Configures LDAP authentication for the Opsview server.

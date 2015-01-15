@@ -31,6 +31,7 @@ template "/usr/local/opsview-web/opsview_web_local.yml" do
   variables(
     :ldap_bind_account => ldap_bind_account
   )
+  sensitive true
   notifies :restart, "service[opsview-web]"
 end
 

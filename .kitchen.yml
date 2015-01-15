@@ -22,7 +22,6 @@ suites:
             plugin_dir: "/usr/local/nagios/libexec"
   - name: server
     run_list:
-      - recipe[apt::default]
       - recipe[opsview::core]
       - recipe[opsview::check_mongodb]
       - recipe[opsview::check_mssql]

@@ -85,6 +85,7 @@ template "/var/cache/local/preseeding/opsview.seed" do
   variables(
     :root_password => root_password
   )
+  sensitive true
   notifies :run, "execute[preseed opsview]", :immediately
 end
 
@@ -145,11 +146,13 @@ unless node['opsview']['admin_password'] == admin_password
     source "admin.json.erb"
     mode 0644
     variables(:encrypted_password => admin_encrypted_password)
+    sensitive true
     notifies :run, "execute[update admin password]", :immediately
   end
   
   execute "update admin password" do
     command "#{node['opsview']['opsview_rest_path']}  --username=admin --password=#{node['opsview']['admin_password']} --content-file=#{node['opsview']['json_config_dir']}/admin.json --data-format=json --pretty PUT config/contact"
+    sensitive true
     action :nothing
   end
   
@@ -221,6 +224,7 @@ objects.each do |object_type, values|
               else
                 command "#{node['opsview']['opsview_rest_path']} --username=admin --password=#{admin_password} DELETE config/#{object_type}/#{object_info["list"].first["id"]}"
               end
+              sensitive true
               notifies :run, "execute[reload opsview config]", :delayed
               action :run
             end
@@ -234,6 +238,7 @@ objects.each do |object_type, values|
     source "#{object_type}.json.erb"
     mode 0644
     variables(:values => values)
+    sensitive true
     notifies :run, "execute[put #{object_type}]", :immediately
     notifies :run, "execute[reload opsview config]", :delayed
   end
@@ -244,6 +249,7 @@ objects.each do |object_type, values|
     else
       command "#{node['opsview']['opsview_rest_path']} --username=admin --password=#{admin_password} --content-file=#{node['opsview']['json_config_dir']}/#{object_type}.json --data-format=json --pretty PUT config/#{object_type}"
     end
+    sensitive true
     action :nothing
   end
 end
@@ -251,5 +257,6 @@ end
 # Reload the Opsview config
 execute "reload opsview config" do
   command "#{node['opsview']['opsview_rest_path']} --username=admin --password=#{admin_password} POST reload"
+  sensitive true
   action :nothing
 end

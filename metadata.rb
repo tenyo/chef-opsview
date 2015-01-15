@@ -3,7 +3,7 @@ maintainer       'Biola University'
 maintainer_email 'jared.king@biola.edu'
 license          'Apache 2.0'
 description      'Installs and configures Opsview Core'
-version          '3.0.0'
+version          '3.0.1'
 
 depends          'apt', '~> 2.5.0'
 depends          'ark', '~> 0.9'
