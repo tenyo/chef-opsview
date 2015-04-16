@@ -17,6 +17,10 @@
 # limitations under the License.
 #
 
+# Whether to setup a yum/apt repo used to install required packages
+# You want this unless you have some other way to manage your packages (e.g. Satellite)
+default['opsview']['setup_repo'] = true
+
 case node['platform']
 when "ubuntu"
   default['opsview']['agent_conf_dir'] = "/usr/local/nagios/etc/nrpe_local"

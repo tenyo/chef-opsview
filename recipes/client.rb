@@ -29,10 +29,10 @@ unless node.run_list.include?("role[#{node['opsview']['server_role']}]")
   # Install the agent
   case node['platform']
   when "ubuntu"
-    include_recipe "opsview::apt_repository"
+    include_recipe "opsview::apt_repository" if node['opsview']['setup_repo']
     package "opsview-agent"
   when "redhat", "centos"
-    include_recipe "opsview::yum_repository"
+    include_recipe "opsview::yum_repository" if node['opsview']['setup_repo']
     package "opsview-agent"
   when "windows"
     arch = node['kernel']['machine'] == "x86_64" ? "x64" : "Win32"
